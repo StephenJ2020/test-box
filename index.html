@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+<div id="mapid" style="height: 80vh; width: 100vw; "></div>
+<!--<div id="mapid" style="height: 80vh; width: 100vw; "></div>-->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script>
+    /*
+    var mymap = L.map('mapid').fitWorld(); //.setView([53.337092, -6.541452], 16); // 53.33709248879115, -6.541452242705141   setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic3RlcGhlbmoyMDIwIiwiYSI6ImNrb2Jzem53YzBiNXkybm4xcG5yZmZvNGcifQ.Ql_NrEB0oLSgspzFdKXV1w'
+        // accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+    function celbridgeAbbey(){
+        return `<h3>Celbridge Abbey</h3>
+        <br>
+        <img src="./assets/images/castletown-house.png" height="120" width="240" alt="Castletown House">
+        <br>
+        <p>Try clicking on our objects. The bindPopup method attaches a popup with the specified HTML content to your marker so the popup 
+            appears when you click on the object, and the openPopup method (for markers only) immediately opens the attached popup.</p>`
+    };
+
+    /*var marker = [
+        { lat: 53.337092, lng: -6.541452},
+        { lat: 53.338728, lng: -6.546203}, //169605396, 567197483
+        { lat: 53.337377, lng: -6.540076} //54971237, 859299464*/
+      /*      
+    var marker = L.marker([53.33675312806737, -6.5421797182255]).addTo(mymap);
+    marker.bindPopup(celbridgeAbbey).openPopup(); // `<b>Hello world!</b><br>I am a popup.`
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(mymap);
+    }
+
+    mymap.on('click', onMapClick);
+
+    var circle = L.circle([53.338728, -6.546203], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 20,
+    }).addTo(mymap);
+
+    /*
+    var map = L.map('mapid').fitWorld();
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic3RlcGhlbmoyMDIwIiwiYSI6ImNrb2Jzem53YzBiNXkybm4xcG5yZmZvNGcifQ.Ql_NrEB0oLSgspzFdKXV1w'        
+    }).addTo(map);*/
+    /*
+    map.locate({setView: true, maxZoom: 16});
+
+    function onLocationFound(e) {
+        var radius = e.accuracy;
+
+        L.marker(e.latlng).addTo(map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+        L.circle(e.latlng, radius).addTo(map);
+    }
+
+    map.on('locationfound', onLocationFound);
+
+    function onLocationError(e) {
+        alert(e.message);
+    }
+
+    map.on('locationerror', onLocationError);*/
+
+
+
+    
+	var map = L.map('mapid').fitWorld();
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3RlcGhlbmoyMDIwIiwiYSI6ImNrb2Jzem53YzBiNXkybm4xcG5yZmZvNGcifQ.Ql_NrEB0oLSgspzFdKXV1w', {
+		maxZoom: 25,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+
+	function onLocationFound(e) {
+		var radius = e.accuracy / 7; // was originally set to 2
+
+		L.marker(e.latlng).addTo(map)
+			.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+		L.circle(e.latlng, radius).addTo(map);
+	}
+
+	function onLocationError(e) {
+		alert(e.message);
+	}
+
+	map.on('locationfound', onLocationFound);
+	map.on('locationerror', onLocationError);
+
+    map.locate({setView: true, maxZoom: 20});
+    
+    function celbridgeAbbey(){
+        return `<h3>Celbridge Abbey</h3>
+        <br>
+        <img src="./assets/images/castletown-house.png" height="120" width="240" alt="Castletown House">
+        <br>
+        <p>Try clicking on our objects. The bindPopup method attaches a popup with the specified HTML content to your marker so the popup 
+            appears when you click on the object, and the openPopup method (for markers only) immediately opens the attached popup.</p>`
+    };
+   
+    var marker = L.marker([53.33675312806737, -6.5421797182255]).addTo(map);
+    marker.bindPopup(celbridgeAbbey).openPopup(); // `<b>Hello world!</b><br>I am a popup.`
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
+
+    map.on('click', onMapClick);
+
+    var circle = L.circle([53.338728, -6.546203], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 20,
+    }).addTo(map);
+
+</script>
+</body>
+</html>
+
+<!--
+
+function initMap(){
+    var map = new google.maps.Map(document.getElementById('map'),{
+        zoom: 3,
+        center:{
+            lat: 46.619261,
+            lng: -33.134766
+        }
+    });
+
+    var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    var locations = [
+        { lat: 40.785091, lng: -73.968285},
+        { lat: 41.084045, lng: -73.874245},
+        { lat: 40.754932, lng: -73.984016}
+    ];
+
+    var markers = locations.map(function(location, i){
+        return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+        });
+    });
+
+    // Add a marker clusterer to manage the markers.
+    var markerCluster = new MarkerClusterer(map, markers, {
+        imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+    });
+}
+
+-->
