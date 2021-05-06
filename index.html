@@ -154,14 +154,20 @@
     var marker = L.marker([53.33675312806737, -6.5421797182255]).addTo(map);
     marker.bindPopup(celbridgeAbbey).openPopup(); // `<b>Hello world!</b><br>I am a popup.`
 
-    var popup = L.popup();
+     /*   
+    var popupF = L.popup()
+    .setLatLng([53.338130, --6.550069])
+    .setContent("Front of House")
+    .openOn(map);*/
 
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
+    /*
+    var popupB = L.popup()
+    .setLatLng([53.338029, -6.550554])
+    .setContent("Back of House")
+    .openOn(map); */
+
+
+    
 
     var popup = L.popup();
 
@@ -174,11 +180,18 @@
 
     map.on('click', onMapClick);
 
-    var circle = L.circle([53.338728, -6.546203], {
+    var circle = L.circle([53.338130, -6.550069], {
         color: 'red',
         fillColor: '#f03',
         fillOpacity: 0.5,
-        radius: 20,
+        radius: 5,
+    }).addTo(map);
+
+    var circle = L.circle([53.338029, -6.550554], {
+        color: 'green',
+        fillColor: 'green',
+        fillOpacity: 0.5,
+        radius: 5,
     }).addTo(map);
 
 </script>
